@@ -29,6 +29,8 @@ require 'faker'
 end
 topics = Topic.all 
 
+# Create Summaries
+
 #Create Posts
 50.times do
   Post.create!(
