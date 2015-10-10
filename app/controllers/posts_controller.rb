@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
-    authorize @posts
+    @posts = policy_scope(Post)
   end
 
   def show
@@ -28,10 +27,12 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    authorize @post
   end
 
   def update
     @post = Post.find(params[:id])
+    authorize @post
     if @post.update_attributes(params.require(:post).permit(:title, :body))
       flash[:notice] = "Post was updated."
       redirect_to @post
