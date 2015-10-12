@@ -15,7 +15,7 @@ class PostPolicy < ApplicationPolicy
       if user.admin? || user.moderator?
         scope.all
       else
-        scope.where(record.user == user)
+        scope.where(user: user)
       end
     end
   end
