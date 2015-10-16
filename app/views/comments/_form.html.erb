@@ -1,5 +1,5 @@
 <h4>Want to add a comment?</h4>
-<%= form_for [@topic, @post, @comment] do |f| %>
+<%= form_for [topic, post, comment] do |f| %>
   <%= f.label :body %>
   <%= f.text_area :body, class: 'form-control', placeholder: "Enter comment" %>
   <div class="form-group">
