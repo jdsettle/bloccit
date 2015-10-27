@@ -19,7 +19,7 @@ describe "Sign in flow" do
         click_button 'Sign in'
       end
 
-      # expect(current_path).to eq topics_path
+      expect(current_path).to eq topics_path
     end
   end
 end

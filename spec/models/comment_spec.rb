@@ -8,9 +8,9 @@ require 'rails_helper'
  
     before do
       @post = associated_post
-      @user = authenticated_user(email_favorites: true)
+      @user = authenticated_user
       @other_user = authenticated_user
-      @comment = Comment.new(body: 'My comment is really great', post: @post, user: @other_user)
+      @comment = Comment.new(body: 'My comment is really great', post: @post, user_id: @other_user)
     end
 
     # We don't need to change anything for this condition;
@@ -18,7 +18,7 @@ require 'rails_helper'
     context "with user's permission" do
  
       it "sends an email to users who have favorited the post" do
-        favorite = @user.favorites.create(post: @post)
+        @user.favorites.where(post_id: @post).create
  
         allow( FavoriteMailer )
           .to receive(:new_comment)
@@ -44,7 +44,7 @@ require 'rails_helper'
       before { @user.update_attribute(:email_favorites, false) }
 
       it "does not send emails, even to users who have favorited" do
-        @user.favorites.where(post: @post).create
+        @user.favorites.where(post_id: @post).create
 
         expect( FavoriteMailer )
          .not_to receive(:new_comment)
