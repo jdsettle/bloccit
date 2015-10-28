@@ -1,5 +1,8 @@
 module TestFactories
 
+  include Warden::Test::Helpers
+  Warden.test_mode!
+
   def associated_post(options={})
     post_options = {
       title: 'Post title',
@@ -17,5 +20,15 @@ module TestFactories
     user.skip_confirmation!
     user.save
     user
+  end
+
+  FactoryGirl.define do
+    factory :user do
+      email 'test@example.com'
+      password 'f4k3p455w0rd'
+
+      # if needed
+      # is_active true
+    end
   end
 end
