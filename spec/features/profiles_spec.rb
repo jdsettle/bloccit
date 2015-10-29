@@ -3,6 +3,8 @@ require 'rails_helper'
 describe "Visiting profiles" do
  
   include TestFactories
+  include Warden::Test::Helpers
+  Warden.test_mode!
  
   before do
     @user = authenticated_user
@@ -27,12 +29,11 @@ describe "Visiting profiles" do
   describe "user visiting own profile" do
 
     before do
-      @user = FactoryGirl.create(:user)
       login_as(@user, :scope => :user)
     end
 
     it "shows profile" do
-      visit user_path(test_user)
+      visit user_path(@user)
       expect(current_path).to eq(user_path(@user))
 
       expect( page ).to have_content(@user.name)
