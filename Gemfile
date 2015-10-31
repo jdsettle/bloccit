@@ -50,31 +50,38 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :development, :test do
+group :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 gem 'bootstrap-sass'
 
+# Used for Devise auth
 gem 'devise'
 
+# Used to secure env
 gem 'figaro'
 
+# Used for user auth
 gem 'pundit'
 
+# Markdown
 gem 'redcarpet'
 
+# Image Upload / Handling
 gem 'carrierwave'
-
 gem 'mini_magick'
 
+# Amazon S3
 gem 'fog'
 
+# Pagination
 gem 'will_paginate', '~> 3.0.5'
 
-gem 'factory_girl_rails', '~> 4.0'
-
+# New Relic for App Performance Monitorign
 gem 'newrelic_rpm'
 
-gem 'puma'
+# gem 'puma'
